@@ -1,0 +1,22 @@
+# Copyright (C) 2021  Kartik Sharma
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+version: '3'
+services:
+ traefik:
+  network_mode: bridge
+  image: traefik:v2.0
+  command: --api.insecure=true --providers.docker
+  ports:
+  - "8081:80"
+  - "8080:8080"
+  volumes:
+  - /var/run/docker.sock:/var/run/docker.sock
