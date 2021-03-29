@@ -42,7 +42,7 @@ docker-compose up -d traefik
 ```bash
 for APIVERSION in {1..6};
 do
-    docker run -d $(./labels.sh) -e APIVERSION=${APIVERSION} -p 8080 --rm myapi:v1;
+    export APIVERSION; docker run -d $(./labels.sh) -e APIVERSION=${APIVERSION} -p 8080 --rm myapi:v1;
 done;
 ```
 
@@ -53,6 +53,8 @@ do
     curl http://localhost:8081/myapi/v${i}/
 done
 ```
+**NOTE** Be sure to check by mistake  `{` `}` are not being escaped by the shell else substitution of `${i}` with APIVERSION won't happen in the curl command
+
 ## Cleanup
 ### Removing the 6 APIs we created
 ```bash
