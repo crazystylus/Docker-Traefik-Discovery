@@ -12,9 +12,9 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-echo """
+echo "
 traefik.enable=true
 traefik.http.routers.myapi${APIVERSION}.entrypoints=http
 traefik.http.routers.myapi${APIVERSION}.rule=PathPrefix(\`/myapi/v${APIVERSION}{regex:$$|/.*}\`)
 traefik.http.routers.myapi${APIVERSION}.middlewares=myapi${APIVERSION}-strip
-traefik.http.middlewares.myapi${APIVERSION}-strip.stripprefix.prefixes=/myapi/v${APIVERSION}""" | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ -l /g'
+traefik.http.middlewares.myapi${APIVERSION}-strip.stripprefix.prefixes=/myapi/v${APIVERSION}" | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ -l /g'
